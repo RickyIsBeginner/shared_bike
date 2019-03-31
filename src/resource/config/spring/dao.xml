@@ -11,4 +11,19 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--<property name="configLocation" value="classpath:config/mybatis/mybatis.xml"/>-->
+        <property name="mapperLocations" value="classpath:com/uestc/ricky/sharedbike/dao/mapper/*.xml"/>
+    </bean>
+
+    <!--mybatis扫描位置-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.uestc.ricky.sharedbike.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
 </beans>

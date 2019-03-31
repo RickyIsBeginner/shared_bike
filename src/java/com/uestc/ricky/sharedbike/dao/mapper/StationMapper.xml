@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uestc.ricky.sharedbike.dao.StationDao">
+    <resultMap id="rm_station" type="com.uestc.ricky.sharedbike.domain.Station">
+        <result column="station_id" property="stationId"/>
+        <result column="name" property="name"/>
+        <result column="lng" property="lng"/>
+        <result column="lat" property="lat"/>
+        <result column="dock_count" property="dockCount"/>
+    </resultMap>
+    <select id="getAllStations" resultMap="rm_station">
+        <![CDATA[
+        SELECT `station_id`, `name`, `lng`, `lat`, `dock_count` FROM stations;
+        ]]>
+    </select>
+</mapper>
